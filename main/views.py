@@ -31,6 +31,7 @@ class StoryHandler(BaseHandler):
         description = body.get('description')
         owner_id = body.get('owner_id')
 
+
         if not link or not story_type:
             return self.error('Both "link" and "type" are required.')
 
