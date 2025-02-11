@@ -1,6 +1,7 @@
+from core.handler import BaseHandler
 from bson import ObjectId
 from core.db import db
-from core.handler import BaseHandler
+
 
 class StoryHandler(BaseHandler):
     async def get(self):
@@ -14,12 +15,13 @@ class StoryHandler(BaseHandler):
                         story['_id'] = str(story['_id'])
 
         return self.success({'items': stories})
+
     async def post(self):
         body = self.body()
         image = body.get('image')
 
         if not image:
-            return  self.error('image required')
+            return self.error('image required')
 
         insert = await  db.stories.insert_one({
             'image': image,
@@ -31,6 +33,7 @@ class StoryHandler(BaseHandler):
             return self.error('Operation failed')
 
         return self.success({'inserted_id': str(insert.inserted_id)})
+
     async def put(self):
         body = self.body()
         story_id = body.get('id')
@@ -47,6 +50,7 @@ class StoryHandler(BaseHandler):
             return self.error('Update failed')
 
         return self.success({'updated_id': story_id})
+
     async def delete(self):
         body = self.body()
         story_id = body.get('id')
@@ -63,6 +67,7 @@ class StoryHandler(BaseHandler):
             return self.error('Delete (status update) failed')
 
         return self.success({'deleted_id': story_id, 'status': -1})
+
 
 class StoryItemHandler(BaseHandler):
     async def get(self, story_id):
@@ -82,6 +87,7 @@ class StoryItemHandler(BaseHandler):
             'description': story.get('description', ''),
             'stories': story.get('stories', [])
         })
+
     async def post(self, parent_id):
         if not ObjectId.is_valid(parent_id):
             return self.error('Invalid story id')
@@ -117,7 +123,8 @@ class StoryItemHandler(BaseHandler):
         if update_result.modified_count == 0:
             return self.error('Failed to add story.')
 
-        return self.success({'message':'Story added successfully'}),
+        return self.success({'message': 'Story added successfully'}),
+
     async def put(self, story_id):
         if not ObjectId.is_valid(story_id):
             return self.error('Invalid story id')
@@ -137,6 +144,7 @@ class StoryItemHandler(BaseHandler):
             return self.error('Update failed or no changes detected.')
 
         return self.success({'updated_id': story_id})
+
     async def delete(self, story_id):
         if not ObjectId.is_valid(story_id):
             return self.error('Invalid story id')
