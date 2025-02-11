@@ -8,7 +8,6 @@ class MainHandler(BaseHandler):
     async def get(self):
         params = self.params()
 
-
         filters = {}
         if params.get('event'):
             filters['event'] = params['event']
