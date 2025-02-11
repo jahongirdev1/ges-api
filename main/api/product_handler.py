@@ -19,25 +19,26 @@ class ProductHandler(BaseHandler):
         price = body.get('price')
         description = body.get('description', '')
 
-        if not image:
-            return self.error('image required')
+        # Validation
+        if not image or not isinstance(image, str) or not image.strip():
+            return self.error('The "image" field is required and must be a non-empty string.')
 
-        if not title:
-            return self.error('title required')
+        if not title or not isinstance(title, str) or not title.strip():
+            return self.error('The "title" field is required and must be a non-empty string.')
 
-        if not price:
-            return self.error('price required')
+        if price is None or not isinstance(price, (int, float)) or price < 0:
+            return self.error('The "price" field is required and must be a positive number.')
 
-        insert = await  db.products.insert_one({
-            'image': image,
-            'title': title,
+        insert = await db.products.insert_one({
+            'image': image.strip(),
+            'title': title.strip(),
             'price': price,
-            'description': description,
+            'description': description.strip(),
             'status': 0,
         })
 
         if not insert or not insert.inserted_id:
-            return self.error('Operation failed')
+            return self.error('Failed to create the product.')
 
         return self.success({'inserted_id': str(insert.inserted_id)})
 
@@ -45,13 +46,13 @@ class ProductHandler(BaseHandler):
 class ProductItemHandler(BaseHandler):
     async def put(self, product_id):
         if not ObjectId.is_valid(product_id):
-            return self.error('Invalid product id')
+            return self.error('Invalid product ID.')
 
         body = self.body()
-        update_fields = {k: v for k, v in body.items() if k != 'id'}
+        update_fields = {k: v for k, v in body.items() if k != 'id' and v != ''}
 
         if not update_fields:
-            return self.error('No fields provided to update.')
+            return self.error('No valid fields provided to update.')
 
         update_result = await db.products.update_one(
             {'_id': ObjectId(product_id)},
@@ -65,13 +66,14 @@ class ProductItemHandler(BaseHandler):
 
     async def delete(self, product_id):
         if not ObjectId.is_valid(product_id):
-            return self.error('Invalid product id')
+            return self.error('Invalid product ID.')
 
         delete_result = await db.products.update_one(
             {'_id': ObjectId(product_id)},
             {'$set': {'status': -1}}
         )
+
         if delete_result.modified_count == 0:
-            return self.error('Delete (status update) failed')
+            return self.error('Product deletion failed or product already deleted.')
 
         return self.success({'deleted_id': product_id, 'status': -1})
