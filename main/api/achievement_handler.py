@@ -4,6 +4,22 @@ from core.db import db
 
 
 class AchievementHandler(BaseHandler):
+    async def get(self):
+        params = self.params()
+        achievement_type = params.get('type', None)
+
+        print(f"Received type: {achievement_type}")
+
+        if not achievement_type:
+            return self.error('The "type" query parameter is required.')
+
+        achievements = await db.achievement.find({'status': 0, 'type': achievement_type}).to_list(None)
+
+        for achievement in achievements:
+            achievement['_id'] = str(achievement['_id'])
+
+        return self.success({'items': achievements})
+
     async def post(self):
         body = self.body()
         achievement_type = body.get('type')
@@ -11,21 +27,20 @@ class AchievementHandler(BaseHandler):
         display_name = body.get('display_name')
         description = body.get('description')
 
-        # Validation
-        if not achievement_type:
+        if not achievement_type or not achievement_type.strip():
             return self.error('The "type" field is required.')
-        if not image:
+        if not image or not image.strip():
             return self.error('The "image" field is required.')
-        if not display_name:
+        if not display_name or not display_name.strip():
             return self.error('The "display_name" field is required.')
-        if not description:
+        if not description or not description.strip():
             return self.error('The "description" field is required.')
 
         insert = await db.achievement.insert_one({
-            'type': achievement_type,
-            'image': image,
-            'display_name': display_name,
-            'description': description,
+            'type': achievement_type.strip(),
+            'image': image.strip(),
+            'display_name': display_name.strip(),
+            'description': description.strip(),
             'status': 0,
         })
 
@@ -36,21 +51,11 @@ class AchievementHandler(BaseHandler):
 
 
 class AchievementsItemHandler(BaseHandler):
-    async def get(self, achievement_type):
-        if not achievement_type:
-            return self.error('The "type" field is required.')
-
-        achievements = await db.achievement.find({'status': 0, 'type': achievement_type}).to_list(None)
-
-        for achievement in achievements:
-            achievement['_id'] = str(achievement['_id'])
-
-        return self.success({'items': achievements})
-
     async def put(self, achievement_id):
         if not achievement_id or not ObjectId.is_valid(achievement_id):
             return self.error('Invalid achievement ID.')
 
+        body = self.body()
         update_fields = {k: v for k, v in body.items() if k != 'id' and v is not None}
 
         if not update_fields:
