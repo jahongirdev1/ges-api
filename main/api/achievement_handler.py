@@ -3,21 +3,7 @@ from bson import ObjectId
 from core.db import db
 
 
-class AchievementItemHandler(BaseHandler):
-    async def get(self):
-        body = self.body()
-        achievement_type = body.get('type')
-
-        if not achievement_type:
-            return self.error('The "type" field is required.')
-
-        achievements = await db.achievement.find({'status': 0, 'type': achievement_type}).to_list(None)
-
-        for achievement in achievements:
-            achievement['_id'] = str(achievement['_id'])
-
-        return self.success({'items': achievements})
-
+class AchievementHandler(BaseHandler):
     async def post(self):
         body = self.body()
         achievement_type = body.get('type')
@@ -50,10 +36,18 @@ class AchievementItemHandler(BaseHandler):
 
 
 class AchievementsItemHandler(BaseHandler):
-    async def put(self):
-        body = self.body()
-        achievement_id = body.get('id')
+    async def get(self, achievement_type):
+        if not achievement_type:
+            return self.error('The "type" field is required.')
 
+        achievements = await db.achievement.find({'status': 0, 'type': achievement_type}).to_list(None)
+
+        for achievement in achievements:
+            achievement['_id'] = str(achievement['_id'])
+
+        return self.success({'items': achievements})
+
+    async def put(self, achievement_id):
         if not achievement_id or not ObjectId.is_valid(achievement_id):
             return self.error('Invalid achievement ID.')
 
@@ -72,10 +66,7 @@ class AchievementsItemHandler(BaseHandler):
 
         return self.success({'updated_id': achievement_id})
 
-    async def delete(self):
-        body = self.body()
-        achievement_id = body.get('id')
-
+    async def delete(self, achievement_id):
         if not achievement_id or not ObjectId.is_valid(achievement_id):
             return self.error('Invalid achievement ID.')
 
