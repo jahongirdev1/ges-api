@@ -1,4 +1,4 @@
-from main.views import StoryHandler, StoryItemHandler
+from main.api.story_handler import StoryHandler, StoryItemHandler
 
 URLS = [
     (r"/api/mobile/stories", StoryHandler),
