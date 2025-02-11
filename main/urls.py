@@ -1,6 +1,6 @@
-from main.views import MainHandler, MainItemHandler
+from main.views import StoryHandler, StoryItemHandler
 
 URLS = [
-    ('/users', MainHandler),
-    ('/users/([^/]+)', MainItemHandler),
+    (r"/api/mobile/stories", StoryHandler),
+    (r"/api/mobile/stories/([a-f0-9]{24})", StoryItemHandler),
 ]
