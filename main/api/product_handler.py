@@ -19,7 +19,6 @@ class ProductHandler(BaseHandler):
         price = body.get('price')
         description = body.get('description', '')
 
-        # Validation
         if not image or not isinstance(image, str) or not image.strip():
             return self.error('The "image" field is required and must be a non-empty string.')
 

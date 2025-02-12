@@ -8,8 +8,6 @@ class AchievementHandler(BaseHandler):
         params = self.params()
         achievement_type = params.get('type', None)
 
-        print(f"Received type: {achievement_type}")
-
         if not achievement_type:
             return self.error('The "type" query parameter is required.')
 
