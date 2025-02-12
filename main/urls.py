@@ -3,6 +3,7 @@ from main.api.product_handler import  ProductHandler, ProductItemHandler
 from main.api.achievement_handler import AchievementHandler, AchievementsItemHandler
 from  main.api.available_course_handler import AvailableCourseHandler, AvailableCourseItemHandler
 from main.api.events_handler import EventHandler, EventsItemHandler
+from main.api.student_handler import StudentHandler
 
 URLS = [
     (r"/api/mobile/stories", StoryHandler),
@@ -19,5 +20,7 @@ URLS = [
 
     (r"/api/mobile/events", EventHandler),
     (r"/api/mobile/events/([a-f0-9]{24})", EventsItemHandler),
+
+    (r"/api/mobile/students", StudentHandler),
 
 ]
