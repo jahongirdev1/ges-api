@@ -5,7 +5,7 @@ from core.db import db
 
 class AchievementHandler(BaseHandler):
     async def get(self):
-        achievements = await db.achievements.find({'status': 0}).to_list(None)
+        achievements = await db.achievement_category.find({'status': 0}).to_list(None)
 
         for achievement in achievements:
             achievement['_id'] = str(achievement['_id'])
