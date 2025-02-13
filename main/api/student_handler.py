@@ -72,7 +72,7 @@ class StudentHandler(BaseHandler):
             'iin': iin,
             'copies': copies,
             'student_id_for_combination': student_id_for_combination,
-            'coin': coin,
+            'coins': coin,
             'balance': balance,
             'status': 0,
         })
