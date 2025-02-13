@@ -41,6 +41,8 @@ class StudentHandler(BaseHandler):
         iin = body.get('iin')
         copies = body.get('copies')
         student_id_for_combination = body.get('student_id_for_combination')
+        coin = body.get('coin')
+        balance = body.get('balance')
 
         insert = await db.students.insert_one({
             'last_name': last_name,
@@ -70,6 +72,8 @@ class StudentHandler(BaseHandler):
             'iin': iin,
             'copies': copies,
             'student_id_for_combination': student_id_for_combination,
+            'coin': coin,
+            'balance': balance,
             'status': 0,
         })
 
@@ -77,3 +81,17 @@ class StudentHandler(BaseHandler):
             return self.error('Failed to create the student.')
 
         return self.success({'inserted_id': str(insert.inserted_id)})
+
+    async def delete(self):
+        body = self.body()
+        student_id = body.get('_id')
+
+        if not student_id:
+            return self.error("Student ID is required.")
+
+        result = await db.students.delete_one({'_id': ObjectId(student_id)})
+
+        if result.deleted_count == 0:
+            return self.error("Failed to delete student or student not found.")
+
+        return self.success({'deleted_id': student_id})
