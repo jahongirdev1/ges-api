@@ -15,7 +15,7 @@ class NotificationHandler(BaseHandler):
         return self.success({'items': notifications})
 
     async def post(self):
-        insert = await db.events.insert_many([
+        insert = await db.notifications.insert_many([
             {
                 'title': 'Home Work',
                 'description': 'Vocabulary, ex 1,2,3,4',
