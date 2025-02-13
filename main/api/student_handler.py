@@ -41,7 +41,7 @@ class StudentHandler(BaseHandler):
         iin = body.get('iin')
         copies = body.get('copies')
         student_id_for_combination = body.get('student_id_for_combination')
-        coin = body.get('coin')
+        coins = body.get('coins')
         balance = body.get('balance')
 
         insert = await db.students.insert_one({
@@ -72,7 +72,7 @@ class StudentHandler(BaseHandler):
             'iin': iin,
             'copies': copies,
             'student_id_for_combination': student_id_for_combination,
-            'coins': coin,
+            'coins': coins,
             'balance': balance,
             'status': 0,
         })
