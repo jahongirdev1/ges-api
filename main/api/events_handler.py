@@ -6,19 +6,18 @@ from core.db import db
 
 class EventHandler(BaseHandler):
     async def get(self):
-        events = await db.events.find({'status': 0}).to_list(None)
+        events = await db.events.find({}).to_list(None)
 
         for event in events:
             event['_id'] = str(event['_id'])
 
         return self.success({'items': events})
 
-
-    async  def post(self):
-        insert = await  db.events.insert_many([
+    async def post(self):
+        insert = await db.events.insert_many([
             {
                 'image': 'https://media.istockphoto.com/id/499517325/photo/a-man-speaking-at-a-business-conference.jpg?s=612x612&w=0&k=20&c=gWTTDs_Hl6AEGOunoQ2LsjrcTJkknf9G8BGqsywyEtE=',
-                'title':'Lorem ipsum',
+                'title': 'Lorem ipsum',
                 'date': '2025-03-09',
                 'price': '500'
             },
@@ -42,11 +41,10 @@ class EventHandler(BaseHandler):
             },
         ])
 
-        if not insert or not insert.inserted_id:
+        if not insert or not insert.inserted_ids:
             return self.error('Failed to create the event.')
 
-        return self.success({'inserted_id': str(insert.inserted_id)})
-
+        return self.success({'inserted_ids': [str(id) for id in insert.inserted_ids]})
 
     # async def post(self):
     #     body = self.body()
