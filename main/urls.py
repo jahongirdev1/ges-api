@@ -23,9 +23,9 @@ URLS = [
 
     (r"/api/mobile/students", StudentHandler),
 
-    (r"/api/mobile/coin_history", CoinHistoryHandler),
+    (r"/api/mobile/coin-history", CoinHistoryHandler),
 
-    (r"/api/mobile/payment_history", PaymentHistoryHandler),
+    (r"/api/mobile/payment-history", PaymentHistoryHandler),
 
     (r"/api/mobile/certificates", CertificateHandler),
 

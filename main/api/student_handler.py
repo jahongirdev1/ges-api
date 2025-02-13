@@ -61,7 +61,7 @@ class CoinHistoryHandler(BaseHandler):
         for coin_history in coin_histories:
             coin_history['_id'] = str(coin_history['_id'])
 
-        return self.success({'items': coin_histores})
+        return self.success({'items': coin_histories})
 
     async def post(self):
         insert = await db.coin_history.insert_many([
@@ -90,7 +90,7 @@ class PaymentHistoryHandler(BaseHandler):
         for payment_history in payment_histories:
             payment_history['_id'] = str(payment_history['_id'])
 
-        return self.success({'items': payment_histores})
+        return self.success({'items': payment_histories})
 
     async def post(self):
         insert = await db.payment_history.insert_many([
