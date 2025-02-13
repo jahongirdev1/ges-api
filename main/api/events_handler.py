@@ -19,25 +19,29 @@ class EventHandler(BaseHandler):
                 'image': 'https://media.istockphoto.com/id/499517325/photo/a-man-speaking-at-a-business-conference.jpg?s=612x612&w=0&k=20&c=gWTTDs_Hl6AEGOunoQ2LsjrcTJkknf9G8BGqsywyEtE=',
                 'title': 'Lorem ipsum',
                 'date': '2025-03-09',
-                'price': '500'
+                'price': '500',
+                'location':'Sayram'
             },
             {
                 'image': 'https://media.istockphoto.com/id/499517325/photo/a-man-speaking-at-a-business-conference.jpg?s=612x612&w=0&k=20&c=gWTTDs_Hl6AEGOunoQ2LsjrcTJkknf9G8BGqsywyEtE=',
                 'title': 'Lorem ipsum 2',
                 'date': '2025-03-09',
-                'price': 'Free'
+                'price': 'Free',
+                'location': 'Sayram'
             },
             {
                 'image': 'https://media.istockphoto.com/id/499517325/photo/a-man-speaking-at-a-business-conference.jpg?s=612x612&w=0&k=20&c=gWTTDs_Hl6AEGOunoQ2LsjrcTJkknf9G8BGqsywyEtE=',
                 'title': 'Lorem ipsum 3',
                 'date': '2025-03-09',
-                'price': '1000'
+                'price': '1000',
+                'location': 'Sayram'
             },
             {
                 'image': 'https://media.istockphoto.com/id/499517325/photo/a-man-speaking-at-a-business-conference.jpg?s=612x612&w=0&k=20&c=gWTTDs_Hl6AEGOunoQ2LsjrcTJkknf9G8BGqsywyEtE=',
                 'title': 'Lorem ipsum 4',
                 'date': '2025-03-09',
-                'price': 'Free'
+                'price': 'Free',
+                'location': 'Sayram'
             },
         ])
 
