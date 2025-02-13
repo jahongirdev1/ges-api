@@ -74,6 +74,115 @@ class StudentHandler(BaseHandler):
             'student_id_for_combination': student_id_for_combination,
             'coins': coins,
             'balance': balance,
+            'next_payment': '02 Feb, 2025',
+            'next_payment_amount': 30000,
+            'coins_history': [
+                {
+                    'date': '2025-02-13',
+                    'count': 10
+                },
+                {
+                    'date': '2025-02-12',
+                    'count': 11
+                },
+                {
+                    'date': '2025-02-11',
+                    'count': 19
+                },
+                {
+                    'date': '2025-02-10',
+                    'count': 6
+                },
+                {
+                    'date': '2025-02-09',
+                    'count': 40
+                },
+                {
+                    'date': '2025-02-08',
+                    'count': 45
+                },
+                {
+                    'date': '2025-02-07',
+                    'count': 32
+                }
+            ],
+            'payment_history': [
+                {
+                    'title': 'Intermediate',
+                    'date': '2025-02-07',
+                    'amount': 14000,
+                    'isOnline': True,
+                },
+                {
+                    'title': 'Intermediate',
+                    'date': '2025-01-07',
+                    'amount': 14000,
+                    'isOnline': False,
+                }, {
+                    'title': 'Intermediate',
+                    'date': '2024-12-07',
+                    'amount': 14000,
+                    'isOnline': True,
+                }, {
+                    'title': 'Intermediate',
+                    'date': '2024-11-07',
+                    'amount': 14000,
+                    'isOnline': True,
+                }, {
+                    'title': 'Pre Intermediate',
+                    'date': '2025-02-07',
+                    'amount': 14000,
+                    'isOnline': False,
+                }, {
+                    'title': 'Intermediate',
+                    'date': '2025-02-07',
+                    'amount': 14000,
+                    'isOnline': True,
+                }, {
+                    'title': 'Intermediate',
+                    'date': '2025-02-07',
+                    'amount': 14000,
+                    'isOnline': True,
+                }, {
+                    'title': 'Intermediate',
+                    'date': '2025-02-07',
+                    'amount': 14000,
+                    'isOnline': True,
+                },
+
+            ],
+            'certificates': [
+                {
+                    'image': 'https://cdn.vectorstock.com/i/1000v/16/73/certificate-template-vector-23631673.jpg',
+                    'title': 'Intermediate',
+                    'link': 'https://mohirdevbucket.s3.eu-central-1.amazonaws.com/certificates/cert-7f01ce2f-8912-4bd1-9683-1b5457269c23-prac--0uSpkcs7.pdf'
+                },
+                {
+                    'image': 'https://cdn.vectorstock.com/i/1000v/16/73/certificate-template-vector-23631673.jpg',
+                    'title': 'Pre Intermediate',
+                    'link': 'https://mohirdevbucket.s3.eu-central-1.amazonaws.com/certificates/cert-7f01ce2f-8912-4bd1-9683-1b5457269c23-prac--0uSpkcs7.pdf'
+                },
+                {
+                    'image': 'https://cdn.vectorstock.com/i/1000v/16/73/certificate-template-vector-23631673.jpg',
+                    'title': 'Elementary',
+                    'link': 'https://mohirdevbucket.s3.eu-central-1.amazonaws.com/certificates/cert-7f01ce2f-8912-4bd1-9683-1b5457269c23-prac--0uSpkcs7.pdf'
+                },
+                {
+                    'image': 'https://cdn.vectorstock.com/i/1000v/16/73/certificate-template-vector-23631673.jpg',
+                    'title': 'Beginner',
+                    'link': 'https://mohirdevbucket.s3.eu-central-1.amazonaws.com/certificates/cert-7f01ce2f-8912-4bd1-9683-1b5457269c23-prac--0uSpkcs7.pdf'
+                },
+                {
+                    'image': 'https://cdn.vectorstock.com/i/1000v/16/73/certificate-template-vector-23631673.jpg',
+                    'title': 'Primary 4',
+                    'link': 'https://mohirdevbucket.s3.eu-central-1.amazonaws.com/certificates/cert-7f01ce2f-8912-4bd1-9683-1b5457269c23-prac--0uSpkcs7.pdf'
+                },
+                {
+                    'image': 'https://cdn.vectorstock.com/i/1000v/16/73/certificate-template-vector-23631673.jpg',
+                    'title': 'Primary 3',
+                    'link': 'https://mohirdevbucket.s3.eu-central-1.amazonaws.com/certificates/cert-7f01ce2f-8912-4bd1-9683-1b5457269c23-prac--0uSpkcs7.pdf'
+                },
+            ],
             'status': 0,
         })
 
