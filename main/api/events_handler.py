@@ -13,27 +13,62 @@ class EventHandler(BaseHandler):
 
         return self.success({'items': events})
 
-    async def post(self):
-        body = self.body()
-        image = body.get('image')
-        title = body.get('title')
-        branch = body.get('branch')
-        date = datetime.now().strftime("%Y-%m-%d %H:%M")
-        description = body.get('description', '')
 
-        insert = await db.events.insert_one({
-            'image': image,
-            'title': title,
-            'branch': branch,
-            'date': date,
-            'description': description,
-            'status': 0,
-        })
+    async  def post(self):
+        insert = await  db.events.insert_many([
+            {
+                'image': 'https://media.istockphoto.com/id/499517325/photo/a-man-speaking-at-a-business-conference.jpg?s=612x612&w=0&k=20&c=gWTTDs_Hl6AEGOunoQ2LsjrcTJkknf9G8BGqsywyEtE=',
+                'title':'Lorem ipsum',
+                'date': '2025-03-09',
+                'price': '500'
+            },
+            {
+                'image': 'https://media.istockphoto.com/id/499517325/photo/a-man-speaking-at-a-business-conference.jpg?s=612x612&w=0&k=20&c=gWTTDs_Hl6AEGOunoQ2LsjrcTJkknf9G8BGqsywyEtE=',
+                'title': 'Lorem ipsum 2',
+                'date': '2025-03-09',
+                'price': 'Free'
+            },
+            {
+                'image': 'https://media.istockphoto.com/id/499517325/photo/a-man-speaking-at-a-business-conference.jpg?s=612x612&w=0&k=20&c=gWTTDs_Hl6AEGOunoQ2LsjrcTJkknf9G8BGqsywyEtE=',
+                'title': 'Lorem ipsum 3',
+                'date': '2025-03-09',
+                'price': '1000'
+            },
+            {
+                'image': 'https://media.istockphoto.com/id/499517325/photo/a-man-speaking-at-a-business-conference.jpg?s=612x612&w=0&k=20&c=gWTTDs_Hl6AEGOunoQ2LsjrcTJkknf9G8BGqsywyEtE=',
+                'title': 'Lorem ipsum 4',
+                'date': '2025-03-09',
+                'price': 'Free'
+            },
+        ])
 
         if not insert or not insert.inserted_id:
             return self.error('Failed to create the event.')
 
         return self.success({'inserted_id': str(insert.inserted_id)})
+
+
+    # async def post(self):
+    #     body = self.body()
+    #     image = body.get('image')
+    #     title = body.get('title')
+    #     branch = body.get('branch')
+    #     date = datetime.now().strftime("%Y-%m-%d %H:%M")
+    #     description = body.get('description', '')
+    #
+    #     insert = await db.events.insert_one({
+    #         'image': image,
+    #         'title': title,
+    #         'branch': branch,
+    #         'date': date,
+    #         'description': description,
+    #         'status': 0,
+    #     })
+    #
+    #     if not insert or not insert.inserted_id:
+    #         return self.error('Failed to create the event.')
+    #
+    #     return self.success({'inserted_id': str(insert.inserted_id)})
 
 
 class EventsItemHandler(BaseHandler):
