@@ -98,49 +98,49 @@ class PaymentHistoryHandler(BaseHandler):
                 "title": "Intermediate",
                 "date": "2025-02-07",
                 "amount": 14000,
-                "isOnline": true
+                "isOnline": True
             },
             {
                 "title": "Intermediate",
                 "date": "2025-01-07",
                 "amount": 14000,
-                "isOnline": false
+                "isOnline": False
             },
             {
                 "title": "Intermediate",
                 "date": "2024-12-07",
                 "amount": 14000,
-                "isOnline": true
+                "isOnline": True
             },
             {
                 "title": "Intermediate",
                 "date": "2024-11-07",
                 "amount": 14000,
-                "isOnline": true
+                "isOnline": True
             },
             {
                 "title": "Pre Intermediate",
                 "date": "2025-02-07",
                 "amount": 14000,
-                "isOnline": false
+                "isOnline": False
             },
             {
                 "title": "Intermediate",
                 "date": "2025-02-07",
                 "amount": 14000,
-                "isOnline": true
+                "isOnline": True
             },
             {
                 "title": "Intermediate",
                 "date": "2025-02-07",
                 "amount": 14000,
-                "isOnline": true
+                "isOnline": True
             },
             {
                 "title": "Intermediate",
                 "date": "2025-02-07",
                 "amount": 14000,
-                "isOnline": true
+                "isOnline": True
             }
         ])
 
