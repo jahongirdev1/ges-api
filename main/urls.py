@@ -4,6 +4,7 @@ from main.api.achievement_handler import AchievementHandler, AchievementsItemHan
 from  main.api.available_course_handler import AvailableCourseHandler, AvailableCourseItemHandler
 from main.api.events_handler import EventHandler, EventsItemHandler
 from main.api.student_handler import StudentHandler, CoinHistoryHandler, PaymentHistoryHandler, CertificateHandler
+from main.api.notification_handler import NotificationHandler
 
 URLS = [
     (r"/api/mobile/stories", StoryHandler),
@@ -29,7 +30,6 @@ URLS = [
 
     (r"/api/mobile/certificates", CertificateHandler),
 
-
-
+    (r"/api/mobile/notifications", NotificationHandler),
 
 ]
