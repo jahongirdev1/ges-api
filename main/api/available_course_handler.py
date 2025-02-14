@@ -53,10 +53,10 @@ class AvailableCourseHandler(BaseHandler):
                 },
             ])
 
-        if not insert or not insert.inserted_id:
+        if not insert or not insert.inserted_ids:
             return self.error('Failed to create the course.')
 
-        return self.success({'inserted_id': str(insert.inserted_id)})
+        return self.success({'inserted_id': str(insert.inserted_ids)})
 
 
 class AvailableCourseItemHandler(BaseHandler):
